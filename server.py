@@ -7,11 +7,13 @@ PORT = 54635  # random but it should be unused
 server.bind((IP, PORT))  # it is a tuple
 server.listen(1)  # how many people can connect
 
-client, client_address = server.accept()  # accept connection requests
+
+# accept connection requests
+client, client_address = server.accept()
 print(client_address)
 
-message = input("Send a message:")
 
-client.send(message.encode())  # sending a message
+message = client.recv(1024)  # taking the messages
+print(message.decode())
 
 server.close()
